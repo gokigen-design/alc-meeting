@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>プロジェクト議事録 | 女性起業家向けフロント講座プラットフォーム</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap');
+
+  :root {
+    --mint: #4ec9b0;
+    --mint-light: #e8f9f6;
+    --mint-dark: #2a9d8f;
+    --dark: #1a1f2e;
+    --dark2: #252c3f;
+    --gray: #6b7280;
+    --gray-light: #f3f4f6;
+    --border: #e5e7eb;
+    --white: #ffffff;
+    --accent: #f59e0b;
+    --accent-light: #fef3c7;
+    --red: #ef4444;
+    --red-light: #fee2e2;
+    --green: #22c55e;
+    --green-light: #dcfce7;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: #f0f2f5;
+    color: #1a1f2e;
+    line-height: 1.8;
+    font-size: 15px;
+  }
+
+  /* ======= HEADER ======= */
+  header {
+    background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%);
+    color: white;
+    padding: 56px 32px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 70% 50%, rgba(78,201,176,0.15) 0%, transparent 60%);
+  }
+  header .badge {
+    display: inline-block;
+    background: var(--mint);
+    color: white;
+    padding: 5px 18px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    font-family: 'DM Mono', monospace;
+    position: relative;
+  }
+  header h1 {
+    font-size: clamp(20px, 3vw, 30px);
+    font-weight: 700;
+    margin-bottom: 14px;
+    line-height: 1.5;
+    position: relative;
+  }
+  header .sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    position: relative;
+  }
+
+  /* ======= META BAR ======= */
+  .meta-bar {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0;
+  }
+  .meta-item {
+    padding: 14px 28px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .meta-item:last-child { border-right: none; }
+  .meta-item .label {
+    color: var(--gray);
+    font-size: 11px;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    font-family: 'DM Mono', monospace;
+  }
+  .meta-item .value {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--dark);
+  }
+
+  /* ======= LAYOUT ======= */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 20px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  /* ======= SECTION CARD ======= */
+  .section-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .section-card__head {
+    background: var(--dark);
+    color: white;
+    padding: 18px 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-card__head.mint { background: var(--mint-dark); }
+  .section-card__head.amber { background: #b45309; }
+  .section-card__num {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    min-width: 28px;
+  }
+  .section-card__title {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+  .section-card__body {
+    padding: 28px;
+  }
+
+  /* ======= PROGRESS SECTION ======= */
+  .progress-section {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border: 2px solid var(--mint);
+  }
+  .progress-section__head {
+    background: var(--mint);
+    color: white;
+    padding: 18px 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .progress-section__head .icon {
+    font-size: 20px;
+  }
+  .progress-section__title {
+    font-size: 17px;
+    font-weight: 700;
+  }
+  .progress-section__body {
+    padding: 28px;
+  }
+
+  /* ======= TASK LIST ======= */
+  .task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .task-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    background: var(--gray-light);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .task-item.done {
+    background: var(--green-light);
+  }
+  .task-item.doing {
+    background: var(--accent-light);
+  }
+  .task-item.todo {
+    background: #f0f2f5;
+  }
+  .task-status {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    font-family: 'DM Mono', monospace;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  .done .task-status { background: var(--green); color: white; }
+  .doing .task-status { background: var(--accent); color: white; }
+  .todo .task-status { background: var(--gray); color: white; }
+  .task-owner {
+    font-size: 12px;
+    color: var(--gray);
+    margin-top: 4px;
+  }
+
+  /* ======= ROLE TABLE ======= */
+  .role-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .role-card {
+    background: var(--gray-light);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .role-card__name {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--dark);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .role-card__name::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--mint);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .role-card__desc {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+
+  /* ======= COURSE GRID ======= */
+  .course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .course-card {
+    border-radius: 12px;
+    padding: 18px;
+    font-size: 13px;
+    line-height: 1.6;
+    border-left: 4px solid transparent;
+  }
+  .course-card.lp      { background: #fff0f3; border-color: #f472b6; }
+  .course-card.line    { background: #f0fdf4; border-color: #22c55e; }
+  .course-card.sns     { background: #faf5ff; border-color: #a855f7; }
+  .course-card.video   { background: #faf5ff; border-color: #7c3aed; }
+  .course-card.content { background: #fefce8; border-color: #eab308; }
+  .course-card.sheet   { background: #f0fdf4; border-color: #16a34a; }
+  .course-card__label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    font-family: 'DM Mono', monospace;
+    opacity: 0.7;
+  }
+  .course-card__title {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+
+  /* ======= QUOTE ======= */
+  .quote-box {
+    background: var(--gray-light);
+    border-left: 4px solid var(--mint);
+    padding: 16px 20px;
+    border-radius: 0 10px 10px 0;
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.8;
+    font-style: italic;
+    margin: 16px 0;
+  }
+
+  /* ======= LIST STYLES ======= */
+  .content-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .content-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .content-list li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--mint);
+    border-radius: 50%;
+    margin-top: 9px;
+    flex-shrink: 0;
+  }
+
+  /* ======= HIGHLIGHT BOXES ======= */
+  .highlight-box {
+    background: var(--mint-light);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .highlight-box strong {
+    color: var(--mint-dark);
+  }
+  .problem-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .problem-list li {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+    line-height: 1.7;
+    padding: 10px 14px;
+    background: var(--red-light);
+    border-radius: 8px;
+    align-items: flex-start;
+  }
+  .problem-list li::before {
+    content: '!';
+    background: var(--red);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  /* ======= PRICE TABLE ======= */
+  .price-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .price-chip {
+    background: var(--dark);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ======= FUNNEL ======= */
+  .funnel {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .funnel-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    background: var(--gray-light);
+  }
+  .funnel-step .num {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    background: var(--mint);
+    color: white;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .funnel-arrow {
+    text-align: center;
+    color: var(--mint);
+    font-size: 20px;
+    margin: -2px 0;
+  }
+
+  /* ======= MEETING LOG ======= */
+  .meeting-log {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .meeting-entry {
+    border-left: 3px solid var(--mint);
+    padding-left: 20px;
+    position: relative;
+  }
+  .meeting-entry::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: var(--mint);
+    border-radius: 50%;
+    position: absolute;
+    left: -7px;
+    top: 7px;
+  }
+  .meeting-entry__date {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--mint-dark);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .meeting-entry__title {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+  .meeting-entry__body {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+
+  /* ======= SUMMARY BOX ======= */
+  .summary-box {
+    background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%);
+    color: white;
+    border-radius: 16px;
+    padding: 32px 28px;
+    text-align: center;
+  }
+  .summary-box .label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--mint);
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 14px;
+  }
+  .summary-box p {
+    font-size: 15px;
+    line-height: 1.9;
+    opacity: 0.9;
+  }
+  .summary-box strong {
+    color: var(--mint);
+  }
+
+  /* ======= FOOTER ======= */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 1px;
+  }
+
+  /* ======= SECTION DIVIDER ======= */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--gray);
+    font-size: 12px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 2px;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  p { line-height: 1.8; font-size: 14px; }
+  h3 { font-size: 15px; font-weight: 700; margin: 20px 0 12px; color: var(--dark); }
+  strong { font-weight: 700; }
+
+  @media (max-width: 600px) {
+    .role-grid { grid-template-columns: 1fr; }
+    .course-grid { grid-template-columns: 1fr; }
+    .meta-item { padding: 12px 16px; }
+    .section-card__body { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="badge">MEETING MINUTES</div>
+  <h1>女性起業家向け「フロント講座10本立て」<br>プラットフォーム構想</h1>
+  <p class="sub">ALCの手前に「階段」を作り、みんなで経済圏を回す新プロジェクトの全体像</p>
+</header>
+
+<!-- META BAR -->
+<div class="meta-bar">
+  <div class="meta-item">
+    <span class="label">PROJECT</span>
+    <span class="value">プロジェクトF（プロF）</span>
+  </div>
+  <div class="meta-item">
+    <span class="label">STATUS</span>
+    <span class="value" style="color:#22c55e;">進行中</span>
+  </div>
+  <div class="meta-item">
+    <span class="label">GOAL</span>
+    <span class="value">年内3本スタンドアップ</span>
+  </div>
+  <div class="meta-item">
+    <span class="label">LAST UPDATED</span>
+    <span class="value">2026.05.18</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ===== PROGRESS ===== -->
+  <div class="progress-section">
+    <div class="progress-section__head">
+      <span class="icon">&#x2705;</span>
+      <span class="progress-section__title">現在の進捗 &amp; アクションリスト</span>
+    </div>
+    <div class="progress-section__body">
+      <div class="task-list">
+        <div class="task-item doing">
+          <span class="task-status">DOING</span>
+          <div>
+            <div>LP（フロント商品）のラフ作成・制作</div>
+            <div class="task-owner">担当：あや（ちゃかなさん想定）</div>
+          </div>
+        </div>
+        <div class="task-item doing">
+          <span class="task-status">DOING</span>
+          <div>
+            <div>プロジェクト名・ブランディング確定（仮：CIX）</div>
+            <div class="task-owner">担当：野田さん + チーム全員</div>
+          </div>
+        </div>
+        <div class="task-item todo">
+          <span class="task-status">TODO</span>
+          <div>
+            <div>各メンバーへ構想内容を共有・ヒアリング</div>
+            <div class="task-owner">担当：野田さん</div>
+          </div>
+        </div>
+        <div class="task-item todo">
+          <span class="task-status">TODO</span>
+          <div>
+            <div>フロント講座 第1弾〜第3弾の内容確定</div>
+            <div class="task-owner">担当：各講師候補</div>
+          </div>
+        </div>
+        <div class="task-item todo">
+          <span class="task-status">TODO</span>
+          <div>
+            <div>カシーさんへ広告運用の打ち合わせ</div>
+            <div class="task-owner">担当：野田さん</div>
+          </div>
+        </div>
+        <div class="task-item todo">
+          <span class="task-status">TODO</span>
+          <div>
+            <div>ALCへの講師ルート（右腕ルート）を全メンバーへ周知</div>
+            <div class="task-owner">担当：野田さん</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MEETING LOG ===== -->
+  <div class="section-card">
+    <div class="section-card__head mint">
+      <span class="section-card__num">LOG</span>
+      <span class="section-card__title">ミーティング記録</span>
+    </div>
+    <div class="section-card__body">
+      <div class="meeting-log">
+        <div class="meeting-entry">
+          <div class="meeting-entry__date">2026.05.18 — 第1回 キックオフMTG</div>
+          <div class="meeting-entry__title">フロント講座プラットフォーム構想 全体像の確認</div>
+          <div class="meeting-entry__body">
+            ALC本体の手前に「階段」が必要という課題認識を共有。フロント講座10本を各メンバーの強みで分担し、野田さんが全体プロデュース。カシーさんが広告で集客し、ALCへアップセルする経済圏の設計を確認。
+          </div>
+        </div>
+        <!-- 今後のMTGはここに追加していく -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 1. 出発点 ===== -->
+  <div class="section-card">
+    <div class="section-card__head">
+      <span class="section-card__num">01</span>
+      <span class="section-card__title">議論の出発点（なぜ今これをやるのか）</span>
+    </div>
+    <div class="section-card__body">
+      <div class="highlight-box">
+        野田さん（ALC運営者）のスペックが現在の女性起業家層に対して高すぎ、ALCにいきなり入るには距離が遠すぎる、という課題認識からスタート。<br>
+        <strong>ALC本体の手前に「階段」となるフロント商品群が必要</strong>という結論に至った。
+      </div>
+
+      <h3>現状の課題</h3>
+      <ul class="problem-list">
+        <li>野田さんのスペックが高すぎて、今の女性起業家との距離が遠い</li>
+        <li>いきなりAI（ALC）を学ぶのはハードルが高い</li>
+        <li>受講希望者が「今すぐ目に見える成果」を欲しがっている</li>
+        <li>野田さん1人での集客・広告運用には限界がある</li>
+        <li>外（自分のリーチ外）に出ていかないと、これ以上は広がらない</li>
+      </ul>
+
+      <div class="quote-box">「すごい何がやばいかっていうと、やっぱ野田さんのスペックが高すぎて、今の女性起業家と野田さんがやっぱ遠すぎるんですよ。だから階段が必要だと思ってて。」</div>
+
+      <h3>過去の成功体験からの確信</h3>
+      <p>過去にも「業界を変えたい」という想いで、1個の講座に収まらない仕組みを作ったことで、ステークホルダーが生まれ、プラットフォームができ、右腕とホルダーがマッチングできるようになり、大きく成長した実績がある。<strong>仕組みを作ったから、そうなった。</strong></p>
+    </div>
+  </div>
+
+  <!-- ===== 2. コア構想 ===== -->
+  <div class="section-card">
+    <div class="section-card__head">
+      <span class="section-card__num">02</span>
+      <span class="section-card__title">プロジェクトのコア構想</span>
+    </div>
+    <div class="section-card__body">
+      <h3>コンセプト：女性起業家向けフロント講座プラットフォーム</h3>
+      <ul class="content-list">
+        <li>ALC本体に行く前段階として、<strong>フロント講座を10個ほど用意</strong>する</li>
+        <li>サイト上で受講者が自分に必要な講座を選べる</li>
+        <li>各メンバーがそれぞれの強み（LINE、デザイン、LP、AIなど）を活かして講座化</li>
+        <li>野田さんは「オールプロデューサー」として全体を統括</li>
+        <li>みんなでプロジェクトを回す（1人で抱えない）</li>
+      </ul>
+
+      <div class="quote-box">「今回もやっぱみんなやっぱスキルがあるわけ。あきちゃんだったらLINEとか、ちゃかなさんだったらデザインとか。そういうのをもっと生かしながら、でもみんなでプロジェクトを回したらどうかと思ってて。」</div>
+
+      <h3>10本のフロント講座のイメージ</h3>
+      <p style="margin-bottom:16px;">受講者にとって「目に見える成果がすぐに得られる」入り口商品を10本ほど揃える。</p>
+      <div class="course-grid">
+        <div class="course-card lp">
+          <div class="course-card__label">LP</div>
+          <div class="course-card__title">LPを作れる！</div>
+          <div>Claude CodeでLP自動作成・量産できる講座</div>
+        </div>
+        <div class="course-card line">
+          <div class="course-card__label">LINE</div>
+          <div class="course-card__title">LINE配信をまるごと自動化</div>
+          <div>Claude CodeでLINE（Lステップ）自動化講座</div>
+        </div>
+        <div class="course-card sns">
+          <div class="course-card__label">SNS</div>
+          <div class="course-card__title">Instagram投稿を自動生成</div>
+          <div>インスタ・スレッズの投稿を自動生成する講座</div>
+        </div>
+        <div class="course-card video">
+          <div class="course-card__label">VIDEO</div>
+          <div class="course-card__title">動画講座を最短で完成</div>
+          <div>AIを活用した動画コンテンツ制作講座</div>
+        </div>
+        <div class="course-card content">
+          <div class="course-card__label">CONTENT</div>
+          <div class="course-card__title">コンテンツ制作を効率化</div>
+          <div>AIでコンテンツ制作をスピードアップ</div>
+        </div>
+        <div class="course-card sheet">
+          <div class="course-card__label">SHEET</div>
+          <div class="course-card__title">スプレッドシートで業務改善</div>
+          <div>GAS×AIで業務を自動化・効率化</div>
+        </div>
+      </div>
+
+      <h3>受講者の動線イメージ</h3>
+      <div class="funnel">
+        <div class="funnel-step"><span class="num">1</span>「LINEに困っている人」→ LINE講座（あきちゃん）を受講</div>
+        <div class="funnel-arrow">▼</div>
+        <div class="funnel-step"><span class="num">2</span>「LPに困っている人」→ LP講座（ちゃかなさん）を受講</div>
+        <div class="funnel-arrow">▼</div>
+        <div class="funnel-step"><span class="num">3</span>フロント修了者を ALC本体へアップセル</div>
+      </div>
+
+      <h3>講座の特徴・運営方針</h3>
+      <ul class="content-list">
+        <li>1回あたり<strong>10名程度の少人数</strong>で手厚くサポート</li>
+        <li>1回・2回はリアル開催で、その後は<strong>エバーグリーンで何度も解放</strong></li>
+        <li>「今月はこの講座、来月はこの講座」と順番に解放してエバーで回し続ける</li>
+        <li>最終的に何度も繰り返し開催できる仕組みにする</li>
+      </ul>
+
+      <h3>価格設計</h3>
+      <div class="price-row">
+        <div class="price-chip">¥30,000</div>
+        <div class="price-chip">¥50,000</div>
+        <div class="price-chip">¥100,000</div>
+      </div>
+      <p style="margin-top:12px; font-size:13px; color:var(--gray);">各講師が「自分がどういうことをやりたいか」から自由に設計。監修・鉄則はあるが、基本は自由設計。</p>
+    </div>
+  </div>
+
+  <!-- ===== 3. 収益構造 ===== -->
+  <div class="section-card">
+    <div class="section-card__head">
+      <span class="section-card__num">03</span>
+      <span class="section-card__title">収益構造・経済圏設計</span>
+    </div>
+    <div class="section-card__body">
+      <div class="highlight-box">
+        フロント講座群を入口に、ALC本体・クライアントワークまで含めた<strong>経済圏ごと作る</strong>のがゴール。1個で勝負するのではなく、複数のフロントを用意して全員で勝っていく構造にする。
+      </div>
+
+      <h3>マネタイズの流れ</h3>
+      <div class="funnel">
+        <div class="funnel-step"><span class="num">1</span>外部プロデューサー（カシーさん）が広告を運用し、各フロント講座に集客</div>
+        <div class="funnel-arrow">▼</div>
+        <div class="funnel-step"><span class="num">2</span>受講者がフロント講座を受講（10本から自分に必要なものを選ぶ）</div>
+        <div class="funnel-arrow">▼</div>
+        <div class="funnel-step"><span class="num">3</span>フロント修了者を ALC本体（¥40万）へアップセル</div>
+        <div class="funnel-arrow">▼</div>
+        <div class="funnel-step"><span class="num">4</span>受講者が独自にクライアントワークを取るルートへ（自由）</div>
+        <div class="funnel-arrow">▼</div>
+        <div class="funnel-step"><span class="num">5</span>育った人は自分も講師として登壇するルートへ</div>
+      </div>
+
+      <div class="quote-box">「うちのプロデューサーのカシーさんが言ってて、今の時代何が当たるかわかんない。だから1個で勝負するよりも何個もあった方がいい。1個当たったら、そっから人が流れるから、みんなで勝っていける。」</div>
+    </div>
+  </div>
+
+  <!-- ===== 4. ビジョン ===== -->
+  <div class="section-card">
+    <div class="section-card__head">
+      <span class="section-card__num">04</span>
+      <span class="section-card__title">ビジョン：次世代のAIリーダーを作る</span>
+    </div>
+    <div class="section-card__body">
+      <ul class="content-list">
+        <li>「<strong>次世代のAIリーダーを作る</strong>」というビジョンが大きな軸</li>
+        <li>野田さんがリーチできない層にも、メンバー経由で届ける</li>
+        <li>女性起業家向けのAIプラットフォームは現状ほぼ存在しない → そこを取りに行く</li>
+        <li>講師が育ち、その講師が予算化・収益化できるエコシステム</li>
+        <li>プロF（プロデューサー陣）から講師になりたい人がどんどん出てくる流れを作る</li>
+        <li>自分のスキルを磨いてここでやりたい、という人が集まる場にする</li>
+      </ul>
+
+      <h3>AIリーダーキャンプとの違い</h3>
+      <p>AIリーダーキャンプは「業界のリーダーを作る」上位プログラム。今回の新プロジェクトはそれとは別軸で、より広いフロント層を取りに行くもの。<strong>両者は並走する。</strong></p>
+    </div>
+  </div>
+
+  <!-- ===== 5. ブランディング ===== -->
+  <div class="section-card">
+    <div class="section-card__head">
+      <span class="section-card__num">05</span>
+      <span class="section-card__title">ブランディング・デザイン方針</span>
+    </div>
+    <div class="section-card__body">
+      <div class="role-grid">
+        <div class="role-card">
+          <div class="role-card__name">メインカラー</div>
+          <div class="role-card__desc">ミントブルー。濃すぎると怖い印象になるので、優しい色味を入れて調整する。</div>
+        </div>
+        <div class="role-card">
+          <div class="role-card__name">トーン</div>
+          <div class="role-card__desc">女性向け。可愛く、優しく、それでいて次世代感のあるデザイン。</div>
+        </div>
+        <div class="role-card">
+          <div class="role-card__name">キービジュアル</div>
+          <div class="role-card__desc">「女性が可愛くLPを作っている」ような写真。みんなが輝くキービジュアル。野田さん独自性は前面に出さない。</div>
+        </div>
+        <div class="role-card">
+          <div class="role-card__name">サイト構成</div>
+          <div class="role-card__desc">トップに可愛い講座一覧。一番下にプロデューサーとして野田さんを配置。</div>
+        </div>
+        <div class="role-card">
+          <div class="role-card__name">仮ネーミング</div>
+          <div class="role-card__desc">「シーアイクス（CIX）」的なもの。検討中。</div>
+        </div>
+      </div>
+      <div class="quote-box">「もう次世代のAIリーダーを作るっていうビジョンと、トップページは女の子が可愛くLPを作ってる写真。女性向けで、その下に可愛いコースが並んで、こんなコースも、こんなコースもあるよみたいな。」</div>
+    </div>
+  </div>
+
+  <!-- ===== 6. 役割分担 ===== -->
+  <div class="section-card">
+    <div class="section-card__head">
+      <span class="section-card__num">06</span>
+      <span class="section-card__title">役割分担</span>
+    </div>
+    <div class="section-card__body">
+      <div class="role-grid">
+        <div class="role-card">
+          <div class="role-card__name">野田さん（恵さん）</div>
+          <div class="role-card__desc">全体プロデュース。ALC本体の運営。コピー・カリキュラム監修（スーパーブレイン担当）。最終的なディレクション。</div>
+        </div>
+        <div class="role-card">
+          <div class="role-card__name">あきちゃん</div>
+          <div class="role-card__desc">LINE関連のフロント講座を担当。クロードコードでLINE自動化が出来るようになる入り口商品。</div>
+        </div>
+        <div class="role-card">
+          <div class="role-card__name">デザイン担当（ちゃかなさん想定）</div>
+          <div class="role-card__desc">LP関連のフロント講座。デザイン全般のディレクション。すでに評判が良いので、それを活かす。</div>
+        </div>
+        <div class="role-card">
+          <div class="role-card__name">カシーさん（外部PD）</div>
+          <div class="role-card__desc">広告運用全般。フロント講座への集客を担う。「顔出しはしない」ポジションで広告を回す。</div>
+        </div>
+        <div class="role-card">
+          <div class="role-card__name">各メンバー（プロF含む）</div>
+          <div class="role-card__desc">得意分野で1本以上のフロント講座を制作。10本のラインナップを全員で埋めていく。</div>
+        </div>
+      </div>
+
+      <h3>講師になりたい人のルート</h3>
+      <div class="funnel">
+        <div class="funnel-step"><span class="num">1</span>右腕として参加したい人は、まずALCに入って野田さんからAIをしっかり学ぶ</div>
+        <div class="funnel-arrow">▼</div>
+        <div class="funnel-step"><span class="num">2</span>ALCを経た上で講師になれる、というルートを公式化する</div>
+        <div class="funnel-arrow">▼</div>
+        <div class="funnel-step"><span class="num">3</span>このルートを、参加メンバー全員に周知する</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 7. オフライン展開 ===== -->
+  <div class="section-card">
+    <div class="section-card__head">
+      <span class="section-card__num">07</span>
+      <span class="section-card__title">オフライン展開</span>
+    </div>
+    <div class="section-card__body">
+      <ul class="content-list">
+        <li>東京・大阪などでオフライン開催を行う</li>
+        <li>受講者が住んでいる場所に<strong>出張して開催</strong>する形も視野</li>
+        <li>これにより、日本各地にALC的なコミュニティが広がっていく絵を描く</li>
+      </ul>
+      <div class="quote-box">「オフラインとかでやって、東京と大阪とか出張行きます。みんなが住んでるところに出張しちゃうのよ。そしたら日本にALCのコミュニティが広がっていく。」</div>
+    </div>
+  </div>
+
+  <!-- ===== 8. 直近アクション ===== -->
+  <div class="section-card">
+    <div class="section-card__head amber">
+      <span class="section-card__num">08</span>
+      <span class="section-card__title">直近のアクション</span>
+    </div>
+    <div class="section-card__body">
+      <h3>本日中に着手するもの</h3>
+      <ul class="content-list">
+        <li>LPのラフ作成を今日からスタートする</li>
+        <li>プロジェクト名・ブランディングを今日この場で詰める</li>
+        <li>仮名「シーアイクス（CIX）」的なネーミングを検討</li>
+      </ul>
+
+      <h3>今回のミーティングに参加していないメンバーへ</h3>
+      <ul class="content-list">
+        <li>本日の構想内容をゼロから共有する</li>
+        <li>「右腕として参加したい人は、まずALCに入ってほしい」ということを伝える</li>
+        <li>ALCを経て、講師になれるルートがあることを周知する</li>
+      </ul>
+
+      <h3>スケジュール感</h3>
+      <ul class="content-list">
+        <li>この構想は約1年温めてきたもの</li>
+        <li><strong>来年では遅い、年内に着手すべき</strong>という認識</li>
+        <li>まずは3つほどのフロント講座をスタンドアップで立ち上げ、順次拡大</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== SUMMARY ===== -->
+  <div class="summary-box">
+    <div class="label">SUMMARY</div>
+    <p>
+      野田さんのALCに直接入るのは多くの女性起業家には遠い。だから、<strong>「目に見える成果がすぐ出るフロント講座」を10本</strong>用意し、各メンバーが自分の強みを活かして講師に立ち、外部プロデューサーが広告で集客、ALCへ流していく<strong>経済圏を年内に立ち上げる。</strong>
+    </p>
+  </div>
+
+</div>
+
+<footer>
+  Meeting Minutes / Project Concept — AI Leader Frontend Platform &nbsp;|&nbsp; For Internal Use
+</footer>
+
+</body>
+</html>
