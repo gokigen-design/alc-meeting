@@ -471,11 +471,10 @@
     background: var(--white);
     border-top: 3px solid var(--mint);
   }
-  .member-card.lp     { border-top-color: var(--pink); }
-  .member-card.line   { border-top-color: #22c55e; }
+  .member-card.red    { border-top-color: #e05555; }
+  .member-card.green  { border-top-color: #22c55e; }
   .member-card.purple { border-top-color: #a855f7; }
-  .member-card.amber  { border-top-color: var(--gold); }
-  .member-card.dark   { border-top-color: var(--mid); }
+  .member-card.blue   { border-top-color: #3b82f6; }
   .member-card__name {
     font-size: 14px;
     font-weight: 700;
@@ -923,24 +922,90 @@
 <!-- ===================== TAB: コンテンツ構想 ===================== -->
 <div id="tab-content" class="tab-content">
   <div class="container">
+
+    <!-- コース全体像画像 -->
+    <div style="margin: 32px 0 28px;">
+      <img src="ko-su.png" alt="コース全体像" style="width:100%; border-radius:4px; display:block;">
+    </div>
+
+    <!-- メモ：Claude Codeデスクトップは必須？ -->
+    <div style="margin-bottom: 32px;">
+      <button onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none'" style="display:flex; align-items:center; gap:10px; background:var(--mint-light); border:1.5px solid var(--mint); padding:12px 18px; width:100%; text-align:left; cursor:pointer; font-family:inherit; font-size:14px; font-weight:700; color:var(--mint-dark); border-radius:2px;">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;"><circle cx="8" cy="8" r="7.5" stroke="#3a9e9e"/><text x="8" y="12" text-anchor="middle" font-size="10" fill="#3a9e9e" font-family="sans-serif" font-weight="bold">?</text></svg>
+        Claude Codeデスクトップが入っていることは必須？
+        <span style="margin-left:auto; font-size:11px; font-weight:400; color:var(--gray);">クリックでメモを表示</span>
+      </button>
+      <div style="display:none; background:var(--white); border:1.5px solid var(--mint); border-top:none; padding:20px 20px 20px; font-size:14px; line-height:1.9; color:var(--mid);">
+        <div style="font-weight:700; margin-bottom:10px; color:var(--dark);">MEMO</div>
+        <p>受講生がClaude Codeデスクトップアプリを事前にインストールしていることを必須条件とするかどうかは、まだ検討中です。</p>
+        <ul style="margin:12px 0 0 16px;">
+          <li>必須にする場合 → 事前案内でセットアップを完了してもらう（準備サイト or マニュアルを配布）</li>
+          <li>任意にする場合 → ブラウザ版Claude.aiでも参加できる設計にする</li>
+        </ul>
+        <p style="margin-top:12px; color:var(--gray); font-size:13px;">次回MTGで確認・追記予定。</p>
+      </div>
+    </div>
+
     <div class="doc-section">
       <div class="doc-section__head">
         <span class="doc-section__num">PLAN</span>
         <span class="doc-section__title">メンバー別コンテンツ担当案</span>
       </div>
-      <p style="margin-bottom:20px;">各メンバーの強みを活かしたフロント講座の担当案です。確定ではなく、今後のMTGで詰めていきます。</p>
-      <div class="member-grid">
-        <div class="member-card lp"><div class="member-card__name">あや <span class="member-card__role">LP・デザイン</span></div><div class="member-card__content-title">LP制作を自分でできるようになる</div><div class="member-card__desc">Claude CodeでLPを自動作成・量産できる講座。デザイン×AIの掛け合わせ。</div><div class="tag-list"><span class="tag">LP制作</span><span class="tag">Claude Code</span><span class="tag">GitHub Pages</span></div></div>
-        <div class="member-card lp"><div class="member-card__name">ちゃかなさん <span class="member-card__role">LP・デザイン</span></div><div class="member-card__content-title">LP制作を自分でできるようになる</div><div class="member-card__desc">デザイン全般のディレクション。LP・バナー・提案資料まで。センスよりも仕組み。</div><div class="tag-list"><span class="tag">LP制作</span><span class="tag">Canva × AI</span><span class="tag">デザイン</span></div></div>
-        <div class="member-card lp"><div class="member-card__name">ゆみさん <span class="member-card__role">LP・画像</span></div><div class="member-card__content-title">アバター・画像生成で発信コストをゼロに</div><div class="member-card__desc">AIアバターや画像生成を活用して、発信のビジュアルコストを大幅に削減する講座。</div><div class="tag-list"><span class="tag">アバター生成</span><span class="tag">画像生成AI</span><span class="tag">宣材写真</span></div></div>
-        <div class="member-card line"><div class="member-card__name">あきさん <span class="member-card__role">LINE</span></div><div class="member-card__content-title">LINE配信をまるごと自動化</div><div class="member-card__desc">Claude CodeでLINE（Lステップ）を自動化。導線設計初期向けの入り口商品。</div><div class="tag-list"><span class="tag">LINE自動配信</span><span class="tag">Lステップ</span><span class="tag">導線設計</span></div></div>
-        <div class="member-card purple"><div class="member-card__name">瑠璃子ちゃん <span class="member-card__role">コンテンツ</span></div><div class="member-card__content-title">自分のコンテンツをAIでビジネス化する</div><div class="member-card__desc">すでに持っているコンテンツをAIを使ってコンテンツビジネス化する方法を案内する講座。</div><div class="tag-list"><span class="tag">コンテンツ化</span><span class="tag">AI活用</span><span class="tag">ビジネス設計</span></div></div>
-        <div class="member-card amber"><div class="member-card__name">あやのさん <span class="member-card__role">ブランディング</span></div><div class="member-card__content-title">AIで自分のブランドを設計する</div><div class="member-card__desc">ブランディングの視点からAI活用を教える。世界観・コンセプト設計に特化した講座。</div><div class="tag-list"><span class="tag">ブランディング</span><span class="tag">世界観設計</span><span class="tag">コンセプト</span></div></div>
-        <div class="member-card dark"><div class="member-card__name">しおりさん <span class="member-card__role">業務効率化</span></div><div class="member-card__content-title">議事録・スライド・アプリ開発を自動化</div><div class="member-card__desc">毎日の業務をAIで自動化。議事録の自動生成、スライド作成、簡単なアプリ開発まで。</div><div class="tag-list"><span class="tag">議事録自動化</span><span class="tag">スライド生成</span><span class="tag">アプリ開発</span></div></div>
-        <div class="member-card dark"><div class="member-card__name">きこさん <span class="member-card__role">会員サイト</span></div><div class="member-card__content-title">会員サイトをAIで構築する（検討中）</div><div class="member-card__desc">会員向けのコンテンツサイトをAIで制作・運営する方法。</div><div class="tag-list"><span class="tag">会員サイト</span><span class="tag">コンテンツ管理</span></div></div>
-        <div class="member-card purple"><div class="member-card__name">桃ちゃん <span class="member-card__role">ツール拡張</span></div><div class="member-card__content-title">UTAGEなどツールの拡張活用（検討中）</div><div class="member-card__desc">UTAGEをはじめとした各種ツールをAIで拡張・自動化する講座。</div><div class="tag-list"><span class="tag">UTAGE</span><span class="tag">ツール拡張</span><span class="tag">自動化</span></div></div>
-        <div class="member-card amber"><div class="member-card__name">キムさん <span class="member-card__role">会計・数字</span></div><div class="member-card__content-title">会計ソフト×AIで数字管理をラクに（検討中）</div><div class="member-card__desc">会計・経理業務にAIを組み合わせて、数字管理の負担を大幅に減らす講座。</div><div class="tag-list"><span class="tag">会計ソフト</span><span class="tag">数字管理</span></div></div>
-        <div class="member-card dark"><div class="member-card__name">中川さん <span class="member-card__role">顧客管理</span></div><div class="member-card__content-title">顧客管理をAIで仕組み化（検討中）</div><div class="member-card__desc">クライアント管理・フォローアップをAIで自動化・効率化する講座。</div><div class="tag-list"><span class="tag">顧客管理</span><span class="tag">CRM</span><span class="tag">フォロー自動化</span></div></div>
+      <p style="margin-bottom:28px;">各メンバーの強みを活かしたフロント講座の担当案です。確定ではなく、今後のMTGで詰めていきます。</p>
+
+      <!-- 発信自動化 -->
+      <div style="margin-bottom: 36px;">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px; border-left: 4px solid #e05555; padding-left:14px;">
+          <span style="font-size:11px; font-weight:700; letter-spacing:2px; color:#e05555; font-family:'DM Mono',monospace;">CATEGORY 01</span>
+          <span style="font-size:16px; font-weight:700; color:var(--dark);">発信自動化</span>
+        </div>
+        <img src="image/haltusinnのコピー.png" alt="発信自動化" style="width:100%; display:block; margin-bottom:16px; border-radius:2px;">
+        <div class="member-grid">
+          <div class="member-card red"><div class="member-card__name">あやのさん <span class="member-card__role">ブランディング</span></div><div class="member-card__content-title">AIで自分のブランドを設計する</div><div class="member-card__desc">ブランディングの視点からAI活用を教える。世界観・コンセプト設計に特化した講座。</div><div class="tag-list"><span class="tag">ブランディング</span><span class="tag">世界観設計</span><span class="tag">コンセプト</span></div></div>
+          <div class="member-card red"><div class="member-card__name">きこさん <span class="member-card__role">会員サイト</span></div><div class="member-card__content-title">会員サイトをAIで構築する（検討中）</div><div class="member-card__desc">会員向けのコンテンツサイトをAIで制作・運営する方法。</div><div class="tag-list"><span class="tag">会員サイト</span><span class="tag">コンテンツ管理</span></div></div>
+          <div class="member-card red"><div class="member-card__name">瑠璃子ちゃん <span class="member-card__role">コンテンツ</span></div><div class="member-card__content-title">自分のコンテンツをAIでビジネス化する</div><div class="member-card__desc">すでに持っているコンテンツをAIを使ってコンテンツビジネス化する方法を案内する講座。</div><div class="tag-list"><span class="tag">コンテンツ化</span><span class="tag">AI活用</span><span class="tag">ビジネス設計</span></div></div>
+        </div>
+      </div>
+
+      <!-- 仕組み化 -->
+      <div style="margin-bottom: 36px;">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px; border-left: 4px solid #22c55e; padding-left:14px;">
+          <span style="font-size:11px; font-weight:700; letter-spacing:2px; color:#22c55e; font-family:'DM Mono',monospace;">CATEGORY 02</span>
+          <span style="font-size:16px; font-weight:700; color:var(--dark);">仕組み化</span>
+        </div>
+        <img src="image/sikumiのコピー.png" alt="仕組み化" style="width:100%; display:block; margin-bottom:16px; border-radius:2px;">
+        <div class="member-grid">
+          <div class="member-card green"><div class="member-card__name">あきさん <span class="member-card__role">LINE</span></div><div class="member-card__content-title">LINE配信をまるごと自動化</div><div class="member-card__desc">Claude CodeでLINE（Lステップ）を自動化。導線設計初期向けの入り口商品。</div><div class="tag-list"><span class="tag">LINE自動配信</span><span class="tag">Lステップ</span><span class="tag">導線設計</span></div></div>
+          <div class="member-card green"><div class="member-card__name">桃ちゃん <span class="member-card__role">ツール拡張</span></div><div class="member-card__content-title">UTAGEなどツールの拡張活用（検討中）</div><div class="member-card__desc">UTAGEをはじめとした各種ツールをAIで拡張・自動化する講座。</div><div class="tag-list"><span class="tag">UTAGE</span><span class="tag">ツール拡張</span><span class="tag">自動化</span></div></div>
+          <div class="member-card green"><div class="member-card__name">しおりさん <span class="member-card__role">業務効率化</span></div><div class="member-card__content-title">議事録・スライド・アプリ開発を自動化</div><div class="member-card__desc">毎日の業務をAIで自動化。議事録の自動生成、スライド作成、簡単なアプリ開発まで。</div><div class="tag-list"><span class="tag">議事録自動化</span><span class="tag">スライド生成</span><span class="tag">アプリ開発</span></div></div>
+        </div>
+      </div>
+
+      <!-- デザイン制作 -->
+      <div style="margin-bottom: 36px;">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px; border-left: 4px solid #a855f7; padding-left:14px;">
+          <span style="font-size:11px; font-weight:700; letter-spacing:2px; color:#a855f7; font-family:'DM Mono',monospace;">CATEGORY 03</span>
+          <span style="font-size:16px; font-weight:700; color:var(--dark);">デザイン制作</span>
+        </div>
+        <img src="image/dezainnのコピー.png" alt="デザイン制作" style="width:100%; display:block; margin-bottom:16px; border-radius:2px;">
+        <div class="member-grid">
+          <div class="member-card purple"><div class="member-card__name">ちゃかなさん <span class="member-card__role">LP・デザイン</span></div><div class="member-card__content-title">LP制作を自分でできるようになる</div><div class="member-card__desc">デザイン全般のディレクション。LP・バナー・提案資料まで。センスよりも仕組み。</div><div class="tag-list"><span class="tag">LP制作</span><span class="tag">Canva × AI</span><span class="tag">デザイン</span></div></div>
+          <div class="member-card purple"><div class="member-card__name">ゆみさん <span class="member-card__role">LP・画像</span></div><div class="member-card__content-title">アバター・画像生成で発信コストをゼロに</div><div class="member-card__desc">AIアバターや画像生成を活用して、発信のビジュアルコストを大幅に削減する講座。</div><div class="tag-list"><span class="tag">アバター生成</span><span class="tag">画像生成AI</span><span class="tag">宣材写真</span></div></div>
+          <div class="member-card purple"><div class="member-card__name">あや <span class="member-card__role">LP・デザイン</span></div><div class="member-card__content-title">LP制作を自分でできるようになる</div><div class="member-card__desc">Claude CodeでLPを自動作成・量産できる講座。デザイン×AIの掛け合わせ。</div><div class="tag-list"><span class="tag">LP制作</span><span class="tag">Claude Code</span><span class="tag">GitHub Pages</span></div></div>
+        </div>
+      </div>
+
+      <!-- 業務効率化 -->
+      <div style="margin-bottom: 16px;">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px; border-left: 4px solid #3b82f6; padding-left:14px;">
+          <span style="font-size:11px; font-weight:700; letter-spacing:2px; color:#3b82f6; font-family:'DM Mono',monospace;">CATEGORY 04</span>
+          <span style="font-size:16px; font-weight:700; color:var(--dark);">業務効率化</span>
+        </div>
+        <img src="image/gyoumukouritukaのコピー.png" alt="業務効率化" style="width:100%; display:block; margin-bottom:16px; border-radius:2px;">
+        <div class="member-grid">
+          <div class="member-card blue"><div class="member-card__name">中川さん <span class="member-card__role">顧客管理</span></div><div class="member-card__content-title">顧客管理をAIで仕組み化（検討中）</div><div class="member-card__desc">クライアント管理・フォローアップをAIで自動化・効率化する講座。</div><div class="tag-list"><span class="tag">顧客管理</span><span class="tag">CRM</span><span class="tag">フォロー自動化</span></div></div>
+          <div class="member-card blue"><div class="member-card__name">キムさん <span class="member-card__role">会計・数字</span></div><div class="member-card__content-title">会計ソフト×AIで数字管理をラクに（検討中）</div><div class="member-card__desc">会計・経理業務にAIを組み合わせて、数字管理の負担を大幅に減らす講座。</div><div class="tag-list"><span class="tag">会計ソフト</span><span class="tag">数字管理</span></div></div>
+        </div>
       </div>
     </div>
   </div>
