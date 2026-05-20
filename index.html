@@ -1180,53 +1180,132 @@
 <!-- ===================== TAB: アイデア ===================== -->
 <div id="tab-idea" class="tab-content">
   <div class="container">
+
+    <!-- ① AIラボの全体像 -->
     <div class="doc-section">
       <div class="doc-section__head">
-        <span class="doc-section__num">IDEA</span>
-        <span class="doc-section__title">アイデアBOX</span>
+        <span class="doc-section__num">01</span>
+        <span class="doc-section__title">AIラボ（仮）の全体像</span>
       </div>
-      <p style="margin-bottom:28px; color:var(--gray);">検討中・思いついたアイデアをストックしておく場所。決定ではなく、ブレスト段階のメモです。</p>
-
-      <!-- イベント・企画アイデア -->
-      <div style="margin-bottom: 12px; border-left:4px solid var(--gold); padding-left:14px; margin-bottom:20px;">
-        <span style="font-size:11px; font-weight:700; letter-spacing:2px; color:var(--gold); font-family:'DM Mono',monospace;">EVENT IDEAS</span>
-        <div style="font-size:15px; font-weight:700; color:var(--dark); margin-top:4px;">イベント・企画案</div>
+      <p style="margin-bottom:20px;">ALC（AIリーダーキャンプ）の<strong>フロント商品</strong>として、各メンバーが得意分野でミニ講座を展開。AI初心者でも実践できる入口を作り、最終的にALCへつなげる導線設計。</p>
+      <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
+        <span style="background:#fee2e2; color:#e05555; font-size:12px; font-weight:700; padding:5px 12px;">発信強化</span>
+        <span style="background:#dcfce7; color:#16a34a; font-size:12px; font-weight:700; padding:5px 12px;">仕組み化</span>
+        <span style="background:#f3e8ff; color:#a855f7; font-size:12px; font-weight:700; padding:5px 12px;">デザイン制作</span>
+        <span style="background:#dbeafe; color:#3b82f6; font-size:12px; font-weight:700; padding:5px 12px;">業務効率化</span>
+        <span style="background:#fef9c3; color:#ca8a04; font-size:12px; font-weight:700; padding:5px 12px;">動画制作</span>
+        <span style="background:#fce7f3; color:#db2777; font-size:12px; font-weight:700; padding:5px 12px;">商品設計</span>
       </div>
-
-      <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:40px;">
-
-        <div style="background:white; border:1.5px solid var(--border); padding:20px 24px; display:flex; gap:16px; align-items:flex-start;">
-          <div style="background:var(--mint-light); color:var(--mint-dark); font-size:10px; font-weight:700; font-family:'DM Mono',monospace; padding:4px 10px; letter-spacing:1px; white-space:nowrap; margin-top:2px;">検討中</div>
-          <div>
-            <div style="font-size:15px; font-weight:700; color:var(--dark); margin-bottom:6px;">Claude セットアップ会</div>
-            <div style="font-size:13px; color:var(--gray); line-height:1.8;">Claude Codeのセットアップ会のみを開催するのが良いか？フロント講座の入口として機能するかを検討。</div>
-          </div>
-        </div>
-
-        <div style="background:white; border:1.5px solid var(--border); padding:20px 24px; display:flex; gap:16px; align-items:flex-start;">
-          <div style="background:var(--mint-light); color:var(--mint-dark); font-size:10px; font-weight:700; font-family:'DM Mono',monospace; padding:4px 10px; letter-spacing:1px; white-space:nowrap; margin-top:2px;">検討中</div>
-          <div>
-            <div style="font-size:15px; font-weight:700; color:var(--dark); margin-bottom:6px;">野田さんのハーネス導入会</div>
-            <div style="font-size:13px; color:var(--gray); line-height:1.8;">野田さん主導でハーネス（Claude）導入会を開催するのはどうか？ALCへの接続口になりえるか検討。</div>
-          </div>
-        </div>
-
-        <div style="background:white; border:1.5px solid var(--border); padding:20px 24px; display:flex; gap:16px; align-items:flex-start;">
-          <div style="background:var(--pink-light); color:var(--pink); font-size:10px; font-weight:700; font-family:'DM Mono',monospace; padding:4px 10px; letter-spacing:1px; white-space:nowrap; margin-top:2px;">アイデア</div>
-          <div>
-            <div style="font-size:15px; font-weight:700; color:var(--dark); margin-bottom:6px;">リアルイベント「AI の祭典」</div>
-            <div style="font-size:13px; color:var(--gray); line-height:1.8;">リアル×AIをテーマにした祭典・フェス型イベント。湘南・鎌倉エリアでの開催も視野に。</div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- 追加ボタン風メモ -->
-      <div style="border:1.5px dashed var(--border); padding:16px 24px; text-align:center; color:var(--gray); font-size:13px;">
-        アイデアが浮かんだら追記してください
-      </div>
-
     </div>
+
+    <!-- ② 課題 -->
+    <div class="doc-section">
+      <div class="doc-section__head">
+        <span class="doc-section__num">02</span>
+        <span class="doc-section__title">現時点の懸念点</span>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div style="background:#fff7f7; border-left:4px solid #e05555; padding:16px 20px;">
+          <div style="font-size:13px; font-weight:700; color:#e05555; margin-bottom:6px;">懸念 1 ｜ Claude Code 未導入者への対応</div>
+          <ul style="font-size:13px; color:var(--mid); line-height:1.9; margin-left:16px;">
+            <li>Claude Code の導入が初めてで不安な方がいる</li>
+            <li>「導入済み」でも実はデスクトップアプリのみ、というケースがある</li>
+            <li>ハンズオン時にサポートが必要になる可能性</li>
+          </ul>
+        </div>
+        <div style="background:#fff7f7; border-left:4px solid #e05555; padding:16px 20px;">
+          <div style="font-size:13px; font-weight:700; color:#e05555; margin-bottom:6px;">懸念 2 ｜ 複数講座に参加する場合の運用</div>
+          <ul style="font-size:13px; color:var(--mid); line-height:1.9; margin-left:16px;">
+            <li>毎回の講座に導入費を含めるのか？</li>
+            <li>導入済みの方には割引するのか？</li>
+            <li>全講座に導入サポートを統一含有するのか？</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ③ Claude Code 導入 A案 vs B案 -->
+    <div class="doc-section">
+      <div class="doc-section__head">
+        <span class="doc-section__num">03</span>
+        <span class="doc-section__title">Claude Code 導入サポートの方向性（検討中）</span>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:8px;">
+        <div style="background:white; border-top:3px solid var(--mint); padding:20px;">
+          <div style="font-size:11px; font-weight:700; letter-spacing:2px; color:var(--mint-dark); font-family:'DM Mono',monospace; margin-bottom:8px;">A 案</div>
+          <div style="font-size:14px; font-weight:700; color:var(--dark); margin-bottom:10px;">全コースに導入サポートを含める</div>
+          <ul style="font-size:13px; color:var(--mid); line-height:1.9; margin-left:14px;">
+            <li>参加者全員が確実にスタートできる</li>
+            <li>講座内容に集中しやすい</li>
+            <li>価格設計が複雑になる可能性</li>
+          </ul>
+        </div>
+        <div style="background:white; border-top:3px solid var(--gold); padding:20px;">
+          <div style="font-size:11px; font-weight:700; letter-spacing:2px; color:var(--gold); font-family:'DM Mono',monospace; margin-bottom:8px;">B 案</div>
+          <div style="font-size:14px; font-weight:700; color:var(--dark); margin-bottom:10px;">導入サポートのみの単独コースを作る</div>
+          <ul style="font-size:13px; color:var(--mid); line-height:1.9; margin-left:14px;">
+            <li>既導入者は各講座に直接参加できる</li>
+            <li>導入コストを1回にまとめられる</li>
+            <li>未導入者の参加ハードルが上がるリスク</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ④ 特別企画案 -->
+    <div class="doc-section">
+      <div class="doc-section__head">
+        <span class="doc-section__num">04</span>
+        <span class="doc-section__title">特別企画案</span>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div style="background:var(--mint-light); border:1.5px solid var(--mint); padding:20px 24px; display:flex; gap:16px; align-items:flex-start;">
+          <div style="background:var(--mint); color:white; font-size:10px; font-weight:700; font-family:'DM Mono',monospace; padding:4px 10px; letter-spacing:1px; white-space:nowrap; margin-top:2px;">注目</div>
+          <div>
+            <div style="font-size:15px; font-weight:700; color:var(--dark); margin-bottom:6px;">野田さんによる「Claude Code 導入スペシャル会」</div>
+            <div style="font-size:13px; color:var(--mid); line-height:1.9;">Claude Codeを開発した野田さんによる導入会・Q&A・活用紹介。YouTubeでも学べるが「一緒に設定する・質問できる・強制的に環境を整える」場としての価値が高い。</div>
+          </div>
+        </div>
+        <div style="background:white; border:1.5px solid var(--border); padding:20px 24px; display:flex; gap:16px; align-items:flex-start;">
+          <div style="background:var(--pink-light); color:var(--pink); font-size:10px; font-weight:700; font-family:'DM Mono',monospace; padding:4px 10px; letter-spacing:1px; white-space:nowrap; margin-top:2px;">検討中</div>
+          <div>
+            <div style="font-size:15px; font-weight:700; color:var(--dark); margin-bottom:6px;">3日間「AI の祭典」フェス型イベント</div>
+            <div style="font-size:13px; color:var(--mid); line-height:1.9;">Claude Code 導入 + 各コース体験 + LINEハーネス導入をセット化した大型イベント案。ただしハンズオン形式には時間と少人数対応が必要なため、個別開催の方が満足度が高い可能性あり。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑤ 推奨ルート -->
+    <div class="doc-section">
+      <div class="doc-section__head">
+        <span class="doc-section__num">05</span>
+        <span class="doc-section__title">現時点の推奨ルート（案）</span>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:0;">
+        <div style="display:flex; gap:16px; align-items:flex-start; padding:16px 0; border-bottom:1px solid var(--border);">
+          <div style="background:var(--mint); color:white; font-size:13px; font-weight:700; width:28px; height:28px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">1</div>
+          <div><strong>各講座にClaude Code 導入サポートを含める</strong><br><span style="font-size:13px; color:var(--gray);">参加者全員が確実に環境を整えてスタートできる</span></div>
+        </div>
+        <div style="display:flex; gap:16px; align-items:flex-start; padding:16px 0; border-bottom:1px solid var(--border);">
+          <div style="background:var(--mint); color:white; font-size:13px; font-weight:700; width:28px; height:28px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">2</div>
+          <div><strong>野田さんによる特別導入会を開催</strong><br><span style="font-size:13px; color:var(--gray);">ALCブランドの価値向上＋見込み客の獲得</span></div>
+        </div>
+        <div style="display:flex; gap:16px; align-items:flex-start; padding:16px 0; border-bottom:1px solid var(--border);">
+          <div style="background:var(--mint); color:white; font-size:13px; font-weight:700; width:28px; height:28px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">3</div>
+          <div><strong>各講座を個別開催（少人数・ハンズオン形式）</strong><br><span style="font-size:13px; color:var(--gray);">大型フェスより実践的で満足度が高い</span></div>
+        </div>
+        <div style="display:flex; gap:16px; align-items:flex-start; padding:16px 0;">
+          <div style="background:var(--mint); color:white; font-size:13px; font-weight:700; width:28px; height:28px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">4</div>
+          <div><strong>ALCへの導線につなげる</strong><br><span style="font-size:13px; color:var(--gray);">フロント講座で体験 → ALC本体へアップセル</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="border:1.5px dashed var(--border); padding:16px 24px; text-align:center; color:var(--gray); font-size:13px;">
+      アイデアが浮かんだら追記してください
+    </div>
+
   </div>
 </div>
 
