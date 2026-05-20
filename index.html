@@ -664,6 +664,7 @@
   <button class="tab-btn" onclick="switchTab('content', this)">コンテンツ構想</button>
   <button class="tab-btn" onclick="switchTab('mtg', this)">MTG記録</button>
   <button class="tab-btn" onclick="switchTab('resources', this)">LP・ツール・素材</button>
+  <button class="tab-btn" onclick="switchTab('idea', this)">アイデア</button>
 </nav>
 
 
@@ -1173,6 +1174,59 @@
           <div class="link-card__desc">ちゃかなさん作成のオリジナル議事録サイト。</div>
         </a>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== TAB: アイデア ===================== -->
+<div id="tab-idea" class="tab-content">
+  <div class="container">
+    <div class="doc-section">
+      <div class="doc-section__head">
+        <span class="doc-section__num">IDEA</span>
+        <span class="doc-section__title">アイデアBOX</span>
+      </div>
+      <p style="margin-bottom:28px; color:var(--gray);">検討中・思いついたアイデアをストックしておく場所。決定ではなく、ブレスト段階のメモです。</p>
+
+      <!-- イベント・企画アイデア -->
+      <div style="margin-bottom: 12px; border-left:4px solid var(--gold); padding-left:14px; margin-bottom:20px;">
+        <span style="font-size:11px; font-weight:700; letter-spacing:2px; color:var(--gold); font-family:'DM Mono',monospace;">EVENT IDEAS</span>
+        <div style="font-size:15px; font-weight:700; color:var(--dark); margin-top:4px;">イベント・企画案</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:40px;">
+
+        <div style="background:white; border:1.5px solid var(--border); padding:20px 24px; display:flex; gap:16px; align-items:flex-start;">
+          <div style="background:var(--mint-light); color:var(--mint-dark); font-size:10px; font-weight:700; font-family:'DM Mono',monospace; padding:4px 10px; letter-spacing:1px; white-space:nowrap; margin-top:2px;">検討中</div>
+          <div>
+            <div style="font-size:15px; font-weight:700; color:var(--dark); margin-bottom:6px;">Claude セットアップ会</div>
+            <div style="font-size:13px; color:var(--gray); line-height:1.8;">Claude Codeのセットアップ会のみを開催するのが良いか？フロント講座の入口として機能するかを検討。</div>
+          </div>
+        </div>
+
+        <div style="background:white; border:1.5px solid var(--border); padding:20px 24px; display:flex; gap:16px; align-items:flex-start;">
+          <div style="background:var(--mint-light); color:var(--mint-dark); font-size:10px; font-weight:700; font-family:'DM Mono',monospace; padding:4px 10px; letter-spacing:1px; white-space:nowrap; margin-top:2px;">検討中</div>
+          <div>
+            <div style="font-size:15px; font-weight:700; color:var(--dark); margin-bottom:6px;">野田さんのハーネス導入会</div>
+            <div style="font-size:13px; color:var(--gray); line-height:1.8;">野田さん主導でハーネス（Claude）導入会を開催するのはどうか？ALCへの接続口になりえるか検討。</div>
+          </div>
+        </div>
+
+        <div style="background:white; border:1.5px solid var(--border); padding:20px 24px; display:flex; gap:16px; align-items:flex-start;">
+          <div style="background:var(--pink-light); color:var(--pink); font-size:10px; font-weight:700; font-family:'DM Mono',monospace; padding:4px 10px; letter-spacing:1px; white-space:nowrap; margin-top:2px;">アイデア</div>
+          <div>
+            <div style="font-size:15px; font-weight:700; color:var(--dark); margin-bottom:6px;">リアルイベント「AI の祭典」</div>
+            <div style="font-size:13px; color:var(--gray); line-height:1.8;">リアル×AIをテーマにした祭典・フェス型イベント。湘南・鎌倉エリアでの開催も視野に。</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 追加ボタン風メモ -->
+      <div style="border:1.5px dashed var(--border); padding:16px 24px; text-align:center; color:var(--gray); font-size:13px;">
+        アイデアが浮かんだら追記してください
+      </div>
+
     </div>
   </div>
 </div>
