@@ -639,6 +639,32 @@
     .member-grid { grid-template-columns: 1fr; }
     .tab-btn { padding: 14px 16px; font-size: 12px; }
   }
+
+  /* URLコピーボタン */
+  .copy-url-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.5px;
+    color: var(--gray);
+    background: var(--bg);
+    border: 1.5px dashed var(--border);
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .copy-url-btn:hover { border-color: var(--mint); color: var(--mint-dark); }
+  .copy-url-btn.copied { border-color: var(--mint); color: var(--mint-dark); background: #eef8f8; }
+  .link-with-copy {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
 </style>
 </head>
 <body>
@@ -1765,6 +1791,41 @@ ALCで学び、講師・サポーターとして活躍する未来へ。</div>
     btn.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  // URLコピーボタンを自動追加
+  document.addEventListener('DOMContentLoaded', function () {
+    // member-card内・CC感動体験・コラボ・LP DRAFTのリンクに追加
+    var targets = document.querySelectorAll(
+      '.member-card a[href], #tab-contents a[href^="http"], #tab-contents a[href$=".pdf"]'
+    );
+    targets.forEach(function (link) {
+      var wrapper = document.createElement('span');
+      wrapper.className = 'link-with-copy';
+      link.parentNode.insertBefore(wrapper, link);
+      wrapper.appendChild(link);
+
+      var btn = document.createElement('button');
+      btn.className = 'copy-url-btn';
+      btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> URLコピー';
+      btn.onclick = function (e) {
+        e.preventDefault();
+        var url = link.getAttribute('href');
+        // 相対パス（PDF）は絶対URLに変換
+        if (!url.startsWith('http')) {
+          url = location.origin + location.pathname.replace(/\/[^/]*$/, '/') + url;
+        }
+        navigator.clipboard.writeText(url).then(function () {
+          btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> コピー完了';
+          btn.classList.add('copied');
+          setTimeout(function () {
+            btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> URLコピー';
+            btn.classList.remove('copied');
+          }, 2000);
+        });
+      };
+      wrapper.appendChild(btn);
+    });
+  });
 </script>
 
 </body>
